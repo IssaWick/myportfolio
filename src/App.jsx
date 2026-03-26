@@ -18,6 +18,7 @@ import {
   FaPhone,
   FaGraduationCap,
   FaSchool,
+  FaRobot,
 } from "react-icons/fa";
 import {
   SiC,
@@ -40,6 +41,7 @@ import project2Img from "./assets/project2.png";
 import project3Img from "./assets/project3.png";
 import anandaLogo from "./assets/ananda_logo.png";
 import universityLogo from "./assets/university_logo.png";
+import project4Video from "./assets/MoodMate.mp4";
 
 const App = () => {
   useEffect(() => {
@@ -73,8 +75,9 @@ const App = () => {
     ],
     Tools: [
       { icon: <SiPostman size={50} color="#FF6C37" />, name: "Postman" },
-      { icon: <FaChartBar size={50} color="#F7931E" />, name: "Minitab" },
+      { icon: <FaChartBar size={50} color="#1ef73b" />, name: "Minitab" },
       { icon: <SiJenkins size={50} color="#D24939" />, name: "Jenkins" },
+      { icon: <FaChartBar size={50} color="#F2C811" />, name: "Power BI" }
     ],
     Frameworks: [
       { icon: <SiMongodb size={50} color="#47A248" />, name: "MongoDB" },
@@ -124,6 +127,18 @@ const App = () => {
       link: "https://github.com/IssaWick/SkillHiveWebApplication.git",
       image: project3Img,
     },
+    {
+      title: "Mood Mate Robot",
+      description: "MoodMate Robot is an intelligent emotion aware system that detects user mood using facial analysis and responds with personalized support. It integrates the Spotify API to recommend music based on detected emotions, creating a more engaging and adaptive user experience.",
+      technologies: [
+        { name: "Python", icon: <FaPython /> },
+        { name: "Deepface", icon: <FaRobot /> },
+        { name: "Node.js", icon: <FaNodeJs /> },
+      ],
+      link: "https://github.com/Kivindu02/Mood-Mate-HCI.git",
+      type: "video",   // 👈 IMPORTANT
+      video: project4Video,
+    }
   ];
 
   const education = [
@@ -285,12 +300,22 @@ const App = () => {
             {projects.map((proj, idx) => (
               <Col md={4} key={idx} className="mb-4">
                 <Card className="project-card shadow-sm h-100">
-                  <Card.Img
-                    variant="top"
-                    src={proj.image}
-                    alt={proj.title}
-                    style={{ height: "220px", objectFit: "cover" }}
-                  />
+                  {proj.type === "video" ? (
+                    <video
+                      controls
+                      style={{ height: "220px", objectFit: "cover", width: "100%" }}
+                    >
+                      <source src={proj.video} type="video/mp4" />
+                      Your browser does not support the video tag.
+                    </video>
+                  ) : (
+                    <Card.Img
+                      variant="top"
+                      src={proj.image}
+                      alt={proj.title}
+                      style={{ height: "220px", objectFit: "cover" }}
+                    />
+                  )}
                   <Card.Body>
                     <Card.Title>{proj.title}</Card.Title>
                     <Card.Text>{proj.description}</Card.Text>
