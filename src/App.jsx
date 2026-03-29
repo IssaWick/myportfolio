@@ -42,6 +42,7 @@ import project3Img from "./assets/project3.png";
 import anandaLogo from "./assets/ananda_logo.png";
 import universityLogo from "./assets/university_logo.png";
 import project4Video from "./assets/MoodMate.mp4";
+import moodMateThumbnail from "./assets/moodmate_thumbnail.png";
 
 const App = () => {
   useEffect(() => {
@@ -303,6 +304,7 @@ const App = () => {
                   {proj.type === "video" ? (
                     <video
                       controls
+                      poster={moodMateThumbnail}   // 👈 THIS LINE FIXES IT
                       style={{ height: "220px", objectFit: "cover", width: "100%" }}
                     >
                       <source src={proj.video} type="video/mp4" />
